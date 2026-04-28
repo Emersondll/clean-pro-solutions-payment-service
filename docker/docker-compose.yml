@@ -1,0 +1,68 @@
+version: "3.9"
+
+services:
+  payment-service:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: payment-service
+    ports:
+      - "8087:8087"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/payment_db
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: guest
+      RABBITMQ_PASSWORD: guest
+      EUREKA_SERVER_URL: http://host.docker.internal:8761/eureka
+      EUREKA_ENABLED: "true"
+      SERVER_PORT: 8087
+    depends_on:
+      mongo:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - payment-net
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8087/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  mongo:
+    image: mongo:7.0
+    container_name: payment-mongo
+    ports:
+      - "27024:27017"
+    volumes:
+      - payment-mongo-data:/data/db
+    networks:
+      - payment-net
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: payment-rabbitmq
+    ports:
+      - "5676:5672"
+      - "15676:15672"
+    networks:
+      - payment-net
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  payment-mongo-data:
+
+networks:
+  payment-net:
+    driver: bridge
