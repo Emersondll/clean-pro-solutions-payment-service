@@ -1,0 +1,49 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: payment-mongo
+    ports:
+      - "27023:27017"
+    networks:
+      - payment-net
+
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: payment-rabbitmq
+    ports:
+      - "5677:5672"
+      - "15677:15672"
+    networks:
+      - payment-net
+
+  service-registry:
+    build:
+      context: ../clean-pro-solutions-service-registry
+      dockerfile: Dockerfile
+    container_name: payment-registry
+    ports:
+      - "8767:8761"
+    networks:
+      - payment-net
+
+  payment-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: payment-service
+    ports:
+      - "8087:8087"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/payment_db
+      RABBITMQ_HOST: rabbitmq
+      EUREKA_SERVER_URL: http://service-registry:8761/eureka
+    depends_on:
+      - mongo
+      - rabbitmq
+      - service-registry
+    networks:
+      - payment-net
+
+networks:
+  payment-net:
+    driver: bridge
