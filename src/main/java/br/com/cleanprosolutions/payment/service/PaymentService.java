@@ -1,9 +1,7 @@
 package br.com.cleanprosolutions.payment.service;
 
-import br.com.cleanprosolutions.payment.document.Payment;
+import br.com.cleanprosolutions.payment.dto.PaymentResponse;
 import br.com.cleanprosolutions.payment.dto.PaymentWebhookRequest;
-
-import java.util.List;
 
 /**
  * Service contract for payment operations.
@@ -14,18 +12,19 @@ import java.util.List;
 public interface PaymentService {
 
     /**
-     * Processes a webhook request from an external payment gateway.
-     * If approved, publishes a PaymentApprovedEvent.
+     * Processes a webhook from an external payment gateway.
+     * Publishes {@code PaymentApprovedEvent} on success or
+     * {@code PaymentFailedEvent} on failure (SAGA rollback).
      *
-     * @param request the webhook details
+     * @param request the webhook payload
      */
     void processWebhook(PaymentWebhookRequest request);
 
     /**
-     * Retrieves all payments for a specific contract.
+     * Returns the payment associated with a contract.
      *
      * @param contractId the contract ID
-     * @return the payment details
+     * @return payment response DTO
      */
-    Payment findByContractId(String contractId);
+    PaymentResponse findByContractId(String contractId);
 }

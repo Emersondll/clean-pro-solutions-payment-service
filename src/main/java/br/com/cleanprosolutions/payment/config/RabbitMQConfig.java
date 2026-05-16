@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * RabbitMQ configuration for the payment service.
  *
  * <p>Configures the consumer for {@code ContractCreated} and the
- * publisher for {@code PaymentApproved}.</p>
+ * publishers for {@code PaymentApproved} and {@code PaymentFailed}.</p>
  *
  * @author Clean Pro Solutions Team
  * @since 1.0.0
@@ -34,9 +34,18 @@ public class RabbitMQConfig {
     @Value("${rabbitmq.routing-key.contract-created:contract.created}")
     private String contractCreatedRoutingKey;
 
+    @Value("${rabbitmq.queue.contract-canceled:contract.canceled.payment.queue}")
+    private String contractCanceledQueue;
+
+    @Value("${rabbitmq.routing-key.contract-canceled:contract.canceled}")
+    private String contractCanceledRoutingKey;
+
     // --- Publisher Configs ---
     @Value("${rabbitmq.exchange.payment:payment.exchange}")
     private String paymentExchange;
+
+    @Value("${rabbitmq.routing-key.payment-failed:payment.failed}")
+    private String paymentFailedRoutingKey;
 
     @Bean
     public Queue contractCreatedQueue() {
@@ -54,6 +63,19 @@ public class RabbitMQConfig {
                 .bind(contractCreatedQueue())
                 .to(contractExchange())
                 .with(contractCreatedRoutingKey);
+    }
+
+    @Bean
+    public Queue contractCanceledQueue() {
+        return new Queue(contractCanceledQueue, true);
+    }
+
+    @Bean
+    public Binding contractCanceledBinding() {
+        return BindingBuilder
+                .bind(contractCanceledQueue())
+                .to(contractExchange())
+                .with(contractCanceledRoutingKey);
     }
 
     @Bean
