@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * REST controller for payment operations.
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 @Slf4j

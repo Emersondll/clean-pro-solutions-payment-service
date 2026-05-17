@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * Global exception handler for the payment service.
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 @Slf4j

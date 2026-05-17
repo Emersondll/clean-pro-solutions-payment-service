@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * <p>Configures the consumer for {@code ContractCreated} and the
  * publishers for {@code PaymentApproved} and {@code PaymentFailed}.</p>
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 @Configuration

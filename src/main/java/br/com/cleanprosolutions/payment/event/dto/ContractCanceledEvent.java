@@ -13,7 +13,7 @@ import java.time.Instant;
  * @param refundPercent  Percentage to refund: 100 (full), 50 (partial), or 0 (none)
  * @param timestamp      Event creation timestamp
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 public record ContractCanceledEvent(

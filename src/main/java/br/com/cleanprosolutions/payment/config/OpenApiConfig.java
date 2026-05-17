@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * OpenAPI / Swagger UI configuration for the payment service.
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 @Configuration
@@ -24,7 +24,7 @@ public class OpenApiConfig {
                         .description("Payment orchestration and Webhook simulation.")
                         .version("1.0.0")
                         .contact(new Contact()
-                                .name("Clean Pro Solutions Team")
+                                .name("Emerson Lima")
                                 .url("https://cleanprosolutions.com.br"))
                         .license(new License()
                                 .name("Apache 2.0")

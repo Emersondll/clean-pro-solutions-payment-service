@@ -11,7 +11,7 @@ import jakarta.validation.constraints.NotNull;
  * @param success               whether the payment was approved
  * @param failureReason         human-readable failure reason (null when success is true)
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 public record PaymentWebhookRequest(

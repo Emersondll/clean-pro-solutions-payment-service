@@ -22,7 +22,7 @@ import java.util.Optional;
  * If refundPercent is 0 the payment is canceled with no refund;
  * otherwise the refund amount is logged and the payment marked as CANCELED.</p>
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 @Slf4j

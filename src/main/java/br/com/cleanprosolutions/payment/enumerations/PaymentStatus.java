@@ -3,7 +3,7 @@ package br.com.cleanprosolutions.payment.enumerations;
 /**
  * Status of a payment transaction.
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 public enum PaymentStatus {

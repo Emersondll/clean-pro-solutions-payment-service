@@ -6,7 +6,7 @@ import br.com.cleanprosolutions.payment.dto.PaymentWebhookRequest;
 /**
  * Service contract for payment operations.
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 public interface PaymentService {

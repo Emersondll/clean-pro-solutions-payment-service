@@ -13,7 +13,7 @@ import java.time.Instant;
  * @param reason     human-readable failure reason from the gateway
  * @param timestamp  event creation time
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 public record PaymentFailedEvent(

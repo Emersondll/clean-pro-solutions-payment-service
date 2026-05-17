@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * <p>Handles payment orchestration, webhooks, and events
  * in the Clean Pro Solutions ecosystem.</p>
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @version 1.0.0
  * @since 1.0.0
  */

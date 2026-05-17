@@ -14,7 +14,7 @@ import java.time.Instant;
  * <p>Uses optimistic locking via {@code @Version} to handle concurrent
  * webhook updates and prevent race conditions.</p>
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 @Document(collection = "payments")

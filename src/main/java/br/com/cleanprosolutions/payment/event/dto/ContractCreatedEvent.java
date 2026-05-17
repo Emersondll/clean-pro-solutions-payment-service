@@ -12,7 +12,7 @@ import java.time.Instant;
  * @param amount       The agreed amount to be paid
  * @param timestamp    Event creation timestamp
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 public record ContractCreatedEvent(

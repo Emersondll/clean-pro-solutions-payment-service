@@ -13,7 +13,7 @@ import java.time.Instant;
  * @param contractId   The associated contract ID
  * @param timestamp    Event creation timestamp
  *
- * @author Clean Pro Solutions Team
+ * @author Emerson Lima
  * @since 1.0.0
  */
 public record PaymentApprovedEvent(
